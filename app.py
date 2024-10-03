@@ -26,7 +26,17 @@ def generate_dummy_data():
 # Retrieve request for all businesses
 @app.route("/api/v1.0/businesses", methods=["GET"])
 def show_all_businesses():
-    return make_response( jsonify( businesses ), 200 )
+    page_num, page_size = 1, 10
+    if request.args.get('pn'):
+        page_num = int(request.args.get('pn'))
+    if request.args.get('ps'):
+        page_size = int(request.args.get('ps'))
+        
+    page_start = (page_size * (page_num - 1))
+    businesses_list = [{k : v} for k,v in businesses.items()]
+    data_to_return = businesses_list[page_start : page_start+page_size]
+
+    return make_response( jsonify( data_to_return ), 200 )
 
 # Retrieve request for specific business
 @app.route("/api/v1.0/businesses/<string:id>", methods=["GET"])
@@ -85,7 +95,17 @@ def fetch_all_reviews(id):
     if id not in businesses:
         return make_response(jsonify({"error": "Invalid business ID"}), 404)
     
-    return make_response( jsonify(businesses[id]["reviews"]), 200)
+    page_num, page_size = 1, 10
+    if request.args.get('pn'):
+        page_num = int(request.args.get('pn'))
+    if request.args.get('ps'):
+        page_size = int(request.args.get('ps'))
+        
+    page_start = (page_size * (page_num - 1))
+    reviews_list = [{k : v} for k,v in businesses[id]["reviews"].items()]
+    data_to_return = reviews_list[page_start : page_start+page_size]
+
+    return make_response( jsonify( data_to_return ), 200 )
 
 # Retrieve request for specific review
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews/<string:r_id>", 
