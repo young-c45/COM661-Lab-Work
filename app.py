@@ -9,19 +9,19 @@ businesses = {}
 def generate_dummy_data():
     towns = ["Coleraine", "Banbridge", "Belfast", "Lisburn", "Ballymena",
         "Derry", "Newry", "Enniskillen", "Omagh", "Ballymoney"]
-    buisness_dict = {}
+    business_dict = {}
     for i in range(100):
         id = str(uuid.uuid1())
         name = "Biz " + str(i)
         town = towns[random.randint(0, len(towns)-1)]
         rating = random.randint(1,5)
-        buisness_dict[id] = {
+        business_dict[id] = {
             "name": name,
             "town": town,
             "rating": rating,
             "reviews": {}
         }
-    return buisness_dict
+    return business_dict
 
 # Retrieve request for all businesses
 @app.route("/api/v1.0/businesses", methods=["GET"])
@@ -31,12 +31,20 @@ def show_all_businesses():
 # Retrieve request for specific business
 @app.route("/api/v1.0/businesses/<string:id>", methods=["GET"])
 def show_one_business(id):
-    return make_response(jsonify(businesses[id]), 200)
+    if id in businesses:
+        return make_response(jsonify(businesses[id]), 200)
+    else:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
 
 # Create business request
 @app.route("/api/v1.0/businesses", methods=["POST"])
 def add_business():
-    next_id = str(uuid.uuid1)
+    if "name" not in request.form \
+    or "town" not in request.form \
+    or "rating" not in  request.form:
+        return make_response(jsonify({"error": "Missing form data"}), 404)
+
+    next_id = str(uuid.uuid1())
     new_business = {
         "name": request.form["name"],
         "town": request.form["town"],
@@ -49,31 +57,57 @@ def add_business():
 # Update business request
 @app.route("/api/v1.0/businesses/<string:id>", methods=["PUT"])
 def edit_business(id):
-    businesses[id]["name"] = request.form["name"]
-    businesses[id]["town"] = request.form["town"]
-    businesses[id]["rating"] = request.form["rating"]
-    return make_response(jsonify({id: businesses[id]}), 200)
+    if id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+
+    is_edited = False
+    for key, value in request.form.items():
+        if key in businesses[id]:
+            is_edited = True
+            businesses[id][key] = value
+    if is_edited:
+        return make_response(jsonify({id: businesses[id]}), 200)
+    else:
+        return make_response(jsonify({"error": "Missing form data"}), 404)
 
 # Delete business request
 @app.route("/api/v1.0/businesses/<string:id>", methods=["DELETE"])
 def delete_business(id):
+    if id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+    
     del businesses[id]
     return make_response(jsonify({}), 200)
 
 # Retrieve request for all reviews
 @app.route("/api/v1.0/businesses/<string:id>/reviews", methods=["GET"])
 def fetch_all_reviews(id):
+    if id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+    
     return make_response( jsonify(businesses[id]["reviews"]), 200)
 
 # Retrieve request for specific review
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews/<string:r_id>", 
     methods=["GET"])
 def fetch_one_review(b_id, r_id):
+    if b_id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+    elif r_id not in businesses[b_id]["reviews"]:
+        return make_response(jsonify({"error": "Invalid review ID"}), 404)
+    
     return make_response(jsonify(businesses[b_id]["reviews"][r_id]), 200)
 
 # Create review request
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews", methods=["POST"])
 def add_new_review(b_id):
+    if b_id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+    elif "username" not in request.form \
+    or "comment" not in request.form \
+    or "stars" not in  request.form:
+        return make_response(jsonify({"error": "Missing form data"}), 404)
+    
     new_review_id = str(uuid.uuid1())
     new_review = {
         "username": request.form["username"],
@@ -87,16 +121,31 @@ def add_new_review(b_id):
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews/<string:r_id>", 
     methods=["PUT"])
 def edit_review(b_id, r_id):
-    businesses[b_id]["reviews"][r_id]["username"] = request.form["username"]
-    businesses[b_id]["reviews"][r_id]["comment"] = request.form["comment"]
-    businesses[b_id]["reviews"][r_id]["stars"] = request.form["stars"]
-    return make_response(jsonify( \
+    if b_id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+    elif r_id not in businesses[b_id]["reviews"]:
+        return make_response(jsonify({"error": "Invalid review ID"}), 404)
+
+    is_edited = False
+    for key, value in request.form.items():
+        if key in businesses[b_id]["reviews"][r_id]:
+            is_edited = True
+            businesses[b_id]["reviews"][r_id][key] = value
+    if is_edited:
+        return make_response(jsonify( \
         {r_id: businesses[b_id]["reviews"][r_id]}), 201)
+    else:
+        return make_response(jsonify({"error": "Missing form data"}), 404)
 
 # Delete review request
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews/<string:r_id>", 
     methods=["DELETE"])
 def delete_review(b_id, r_id):
+    if b_id not in businesses:
+        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+    elif r_id not in businesses[b_id]["reviews"]:
+        return make_response(jsonify({"error": "Invalid review ID"}), 404)
+    
     del businesses[b_id]["reviews"][r_id]
     return make_response(jsonify({}), 200)
 
