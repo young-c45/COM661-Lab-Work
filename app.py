@@ -1,27 +1,16 @@
 from flask import Flask, make_response, jsonify, request
-import uuid, random
+from pymongo import MongoClient
+from bson import ObjectId
 
 app = Flask(__name__)
 
-businesses = {}
+client = MongoClient("mongodb://127.0.0.1:27017")
+db = client.bizDB
+buisnesses = db.biz
 
-# For creating an example dataset
-def generate_dummy_data():
-    towns = ["Coleraine", "Banbridge", "Belfast", "Lisburn", "Ballymena",
-        "Derry", "Newry", "Enniskillen", "Omagh", "Ballymoney"]
-    business_dict = {}
-    for i in range(100):
-        id = str(uuid.uuid1())
-        name = "Biz " + str(i)
-        town = towns[random.randint(0, len(towns)-1)]
-        rating = random.randint(1,5)
-        business_dict[id] = {
-            "name": name,
-            "town": town,
-            "rating": rating,
-            "reviews": {}
-        }
-    return business_dict
+
+
+"""
 
 # Retrieve request for all businesses
 @app.route("/api/v1.0/businesses", methods=["GET"])
@@ -168,7 +157,8 @@ def delete_review(b_id, r_id):
     
     del businesses[b_id]["reviews"][r_id]
     return make_response(jsonify({}), 200)
+"""
+
 
 if __name__ == "__main__":
-    businesses = generate_dummy_data()
     app.run(debug=True)
