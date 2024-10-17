@@ -13,8 +13,29 @@ client = MongoClient("mongodb://127.0.0.1:27017")
 db = client.bizDB
 businesses = db.biz
 
+def jwt_required(func):
+    @wraps(func)
+    def jwt_required_wrapper(*args, **kwargs):
+        if "x-access-token" in request.headers:
+            token = request.headers['x-access-token']
+        else:
+            return make_response(jsonify({"message": "Token is missing"}), 401)
+        
+        try:
+            data = jwt.decode(
+                token,
+                app.config['SECRET_KEY'],
+                algorithms="HS256"
+            )
+        except:
+            return make_response(jsonify({"message": "Token is invalid"}), 401)
+        
+        return func(*args, **kwargs)
+    return jwt_required_wrapper
+
 # Create business request
 @app.route("/api/v1.0/businesses", methods=["POST"])
+@jwt_required
 def add_business():
     if "name" not in request.form \
     or "town" not in request.form \
@@ -72,6 +93,7 @@ def show_one_business(id):
 
 # Update business request
 @app.route("/api/v1.0/businesses/<string:id>", methods=["PUT"])
+@jwt_required
 def edit_business(id):
     if "name" not in request.form \
     or "town" not in request.form \
@@ -98,6 +120,7 @@ def edit_business(id):
 
 # Delete business request
 @app.route("/api/v1.0/businesses/<string:id>", methods=["DELETE"])
+@jwt_required
 def delete_business(id):
     try:
         result = businesses.delete_one({"_id": ObjectId(id)})
@@ -111,6 +134,7 @@ def delete_business(id):
 
 # Create review request
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews", methods=["POST"])
+@jwt_required
 def add_new_review(b_id):
     if "username" not in request.form \
     or "comment" not in request.form \
@@ -184,6 +208,7 @@ def fetch_one_review(b_id, r_id):
 # Update review request
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews/<string:r_id>", 
     methods=["PUT"])
+@jwt_required
 def edit_review(b_id, r_id):
     if "username" not in request.form \
     or "comment" not in request.form \
@@ -218,6 +243,7 @@ def edit_review(b_id, r_id):
 # Delete review request
 @app.route("/api/v1.0/businesses/<string:b_id>/reviews/<string:r_id>", 
     methods=["DELETE"])
+@jwt_required
 def delete_review(b_id, r_id):
     try:
         b_idObject = ObjectId(b_id)
