@@ -11,7 +11,7 @@ import { RouterOutlet } from '@angular/router';
 export class BusinessesComponent {
     business_list = [
         {
-            "name": "Pizz Mountain",
+            "name": "Pizza Mountain",
             "town": "Coleraine",
             "rating": 5
         },
