@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BusinessesComponent } from "./businesses.components";
+import jsonData from "../assets/businesses.json";
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,7 @@ import { BusinessesComponent } from "./businesses.components";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'the website';
+  ngOnInit() {
+    console.log(jsonData);
+  }
 }
