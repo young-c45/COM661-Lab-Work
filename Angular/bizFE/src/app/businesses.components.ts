@@ -9,5 +9,21 @@ import { RouterOutlet } from '@angular/router';
     styleUrl: './businesses.component.css'
 })
 export class BusinessesComponent {
-    
+    business_list = [
+        {
+            "name": "Pizz Mountain",
+            "town": "Coleraine",
+            "rating": 5
+        },
+        {
+            "name": "Wine Lake",
+            "town": "Ballymoney",
+            "rating": 3
+        },
+        {
+            "name": "Sweet Desert",
+            "town": "Ballymena",
+            "rating": 4
+        }
+    ]
 }

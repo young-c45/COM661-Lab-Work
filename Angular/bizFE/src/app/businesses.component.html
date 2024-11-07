@@ -1,3 +1,20 @@
 <h1>
     Biz Directory
 </h1>
+<h2>
+    There are {{ business_list.length }}
+    businesses in the directory.
+</h2>
+
+<h2>
+    The first business is
+    {{ business_list[0].name }}
+</h2>
+
+@for (business of business_list; track business.name) {
+<p>
+    Name: {{ business.name }} <br>
+    Town: {{ business.town }} <br>
+    Rating: {{ business.rating }}
+</p>
+}
