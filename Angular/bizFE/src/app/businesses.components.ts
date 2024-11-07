@@ -17,12 +17,14 @@ export class BusinessesComponent {
     constructor(public dataService: DataService) { }
 
     ngOnInit() {
+        if (sessionStorage['page']) this.page = Number(sessionStorage['page']);
         this.business_list = this.dataService.getBusinesses(this.page);
     }
 
     previousPage() {
         if (this.page > 1) {
             this.page = this.page - 1;
+            sessionStorage['page'] = this.page;
             this.business_list = this.dataService.getBusinesses(this.page);
         }
     }
@@ -30,6 +32,7 @@ export class BusinessesComponent {
     nextPage() {
         if (this.page < this.dataService.getLastPageNumber()) {
             this.page = this.page + 1;
+            sessionStorage['page'] = this.page;
             this.business_list = this.dataService.getBusinesses(this.page);
         }
     }

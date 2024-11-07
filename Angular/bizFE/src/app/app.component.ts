@@ -11,7 +11,5 @@ import jsonData from "../assets/businesses.json";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  ngOnInit() {
-    console.log(jsonData);
-  }
+
 }
