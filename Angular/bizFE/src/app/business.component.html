@@ -10,7 +10,10 @@
                     This business is based in {{ business.town }}
                 </div>
                 <div class="card-footer">
-                    Rating: {{ business.rating }}
+                    <span *ngFor="let star of [].constructor(business.rating)">
+                        <img src="images/star.png" style="width: 30px; 
+                                            height: 30px;">
+                    </span>
                 </div>
             </div>
             }
