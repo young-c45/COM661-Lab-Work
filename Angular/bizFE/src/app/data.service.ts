@@ -12,4 +12,14 @@ export class DataService {
     getLastPageNumber() {
         return Math.ceil(jsonData.length / this.pageSize);
     }
+
+    getBusiness(id: any) {
+        let dataToReturn: any[] = [];
+        jsonData.forEach(function (business) {
+            if (business["_id"]["$oid"] == id) {
+                dataToReturn.push(business);
+            }
+        });
+        return dataToReturn;
+    }
 }
