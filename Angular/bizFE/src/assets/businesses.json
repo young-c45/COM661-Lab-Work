@@ -3113,12 +3113,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671132930de36c64363f655e"
-			},
 			"username": "Some Guy",
 			"comment": "I liked it!",
-			"stars": "4"
+			"stars": 4
 		}
 	],
 	"num_employees": 94,
@@ -3198,12 +3195,9 @@
 	"rating": "3",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a39a6e138630918f546a9"
-			},
 			"username": "Test User",
 			"comment": "It's just a test",
-			"stars": "3"
+			"stars": 3
 		}
 	]
 },
@@ -3216,12 +3210,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a39d4e138630918f546ab"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3234,12 +3225,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3adde138630918f546ad"
-			},
 			"username": "Test User",
 			"comment": "It's just a test",
-			"stars": "3"
+			"stars": 3
 		}
 	]
 },
@@ -3252,12 +3240,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3aede138630918f546af"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3270,12 +3255,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3b31e138630918f546b1"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3288,12 +3270,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3b43e138630918f546b3"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3306,12 +3285,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3b54e138630918f546b5"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3324,12 +3300,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3bb5e138630918f546b8"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3342,12 +3315,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3bbee138630918f546ba"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3360,12 +3330,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3cd0e138630918f546bd"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 },
@@ -3378,12 +3345,9 @@
 	"rating": "5",
 	"reviews": [
 		{
-			"_id": {
-				"$oid": "671a3ce9e138630918f546c0"
-			},
 			"username": "Test User",
 			"comment": "Better than I remeber",
-			"stars": "5"
+			"stars": 5
 		}
 	]
 }]
