@@ -4,6 +4,7 @@ import { DataService } from './data.service';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
     selector: 'business',
@@ -24,7 +25,8 @@ export class BusinessComponent {
 
     constructor(public dataService: DataService,
         public route: ActivatedRoute, 
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public authService: AuthService) { }
 
     ngOnInit() {
         this.reviewForm = this.formBuilder.group({
