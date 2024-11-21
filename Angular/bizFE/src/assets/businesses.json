@@ -67,7 +67,13 @@
 	"name": "Biz 17",
 	"town": "Coleraine",
 	"rating": 5,
-	"reviews": [],
+	"reviews": [
+		{
+			"username": "Test User",
+			"comment": "Lorem ipsum",
+			"stars": 3
+		}
+	],
 	"num_employees": 15,
 	"profit": [
 		{
