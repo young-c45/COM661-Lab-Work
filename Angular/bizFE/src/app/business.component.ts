@@ -3,11 +3,13 @@ import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { DataService } from './data.service';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'business',
     standalone: true,
-    imports: [RouterOutlet, CommonModule, GoogleMapsModule],
+    imports: [RouterOutlet, CommonModule, GoogleMapsModule, 
+        ReactiveFormsModule],
     providers: [DataService],
     templateUrl: './business.component.html',
     styleUrl: './business.component.css'
@@ -18,11 +20,19 @@ export class BusinessComponent {
     business_lng: any;
     map_options: google.maps.MapOptions = {};
     map_locations: any[] = [];
+    reviewForm: any;
 
     constructor(public dataService: DataService,
-        public route: ActivatedRoute) { }
+        public route: ActivatedRoute, 
+        private formBuilder: FormBuilder) { }
 
     ngOnInit() {
+        this.reviewForm = this.formBuilder.group({
+            username: '',
+            comment: '',
+            stars: 5
+        })
+
         this.business_list = this.dataService.getBusiness(
             this.route.snapshot.paramMap.get('id'));
         this.business_lat = this.business_list[0].location.coordinates[0];
@@ -39,5 +49,9 @@ export class BusinessComponent {
             zoom: 13,
             disableDefaultUI: true
         };
+    }
+
+    onSubmit() {
+        console.log(this.reviewForm.value)
     }
 }
