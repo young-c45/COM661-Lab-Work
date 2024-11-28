@@ -19,4 +19,21 @@ export class WebService {
             'http://localhost:5000/api/v1.0/businesses/' + id
         );
     }
+
+    postReview(id: any, review: any) {
+        let postData = new FormData();
+        postData.append("username", review.username);
+        postData.append("comment", review.comment);
+        postData.append("stars", review.stars);
+        return this.http.post<any>(
+            'http://localhost:5000/api/v1.0/businesses/' + id + '/reviews', 
+            postData
+        );
+    }
+
+    getReviews (id: any) {
+        return this.http.get<any>(
+            'http://localhost:5000/api/v1.0/businesses/' + id + '/reviews'
+        )
+    }
 }

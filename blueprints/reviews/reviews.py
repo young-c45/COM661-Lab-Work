@@ -10,7 +10,7 @@ businesses = globals.db.biz
 # Create review request
 @reviews_bp.route("/api/v1.0/businesses/<string:b_id>/reviews", 
     methods=["POST"])
-@jwt_required
+#@jwt_required
 def add_new_review(b_id):
     if "username" not in request.form \
     or "comment" not in request.form \

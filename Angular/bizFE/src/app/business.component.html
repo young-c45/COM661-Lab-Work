@@ -10,7 +10,7 @@
                     This business is based in {{ business.town }}
                 </div>
                 <div class="card-footer">
-                    <span *ngFor="let star of [].constructor(business.rating)">
+                    <span *ngFor="let star of [].constructor(+business.rating)">
                         <img src="images/star.png" style="width: 30px; 
                                             height: 30px;">
                     </span>
@@ -27,13 +27,13 @@
 
             <div class="row" style="margin-top: 70px">
                 <div class="col-sm-12">
-                    @for (review of business.reviews; track review) {
+                    @for (review of review_list; track review) {
                         <div class="card bg-light mb-3">
                             <div class="card-header">{{review.username}}</div>
                             <div class="card-body">{{review.comment}}</div>
                             <div class="card-footer">
                                 <span *ngFor="let star of 
-                                    [].constructor(review.stars)">
+                                    [].constructor(+review.stars)">
                                     <img src="images/star.png" 
                                         style="width: 30px; height: 30px;">
                                 </span>

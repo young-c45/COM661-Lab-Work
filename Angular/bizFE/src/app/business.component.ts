@@ -23,6 +23,7 @@ export class BusinessComponent {
     map_options: google.maps.MapOptions = {};
     map_locations: any[] = [];
     reviewForm: any;
+    review_list: any;
 
     constructor(public dataService: DataService,
                 public route: ActivatedRoute, 
@@ -57,14 +58,26 @@ export class BusinessComponent {
                     zoom: 13,
                     disableDefaultUI: true
                 };
-            })
+            });
+        
+            this.webService.getReviews(this.route.snapshot.paramMap.get('id'))
+                .subscribe((response: any) => {
+                    this.review_list = response;
+                })
     }
 
     onSubmit() {
-        this.dataService.postReview(
+        this.webService.postReview(
             this.route.snapshot.paramMap.get('id'),
-            this.reviewForm.value);
-        this.reviewForm.reset();
+            this.reviewForm.value
+        ).subscribe((response) => {
+            this.reviewForm.reset();
+
+            this.webService.getReviews(this.route.snapshot.paramMap.get('id'))
+                .subscribe((response: any) => {
+                    this.review_list = response;
+                });
+        });
     }
 
     isInvalid(control: any) {
