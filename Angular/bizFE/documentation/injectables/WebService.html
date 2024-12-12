@@ -119,6 +119,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The Web Service provides access to the endpoints of the
+Biz Directory API.</p>
+
+            </p>
 
 
 
@@ -184,12 +192,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/web.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/web.service.ts:13</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>The constructor for the Web Service
+class</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -198,6 +209,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -212,6 +224,11 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Injecting the HttpClient to the WebService
+class</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -247,8 +264,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/web.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/web.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -314,14 +331,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/app/web.service.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/web.service.ts:27</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Fetch a page of businesses from the Biz Directory API</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -332,6 +351,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -346,6 +366,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The page number requested</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -355,7 +379,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An Observable for the collection of businesses</p>
+
                             </div>
                 </td>
             </tr>
@@ -381,8 +406,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/web.service.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/web.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -448,8 +473,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/web.service.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/web.service.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -537,10 +562,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/web.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/web.service.ts:13</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The default page size to be returned</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -553,12 +584,29 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &quot;@angular/common/http&quot;;
 import { Injectable } from &quot;@angular/core&quot;;
 
+/**
+ * The Web Service provides access to the endpoints of the
+ * Biz Directory API.
+ */
 @Injectable()
 export class WebService {
+    /**
+     * The default page size to be returned
+     */
     pageSize: number &#x3D; 4;
 
+    /**
+     * The constructor for the Web Service
+     * @param http Injecting the HttpClient to the WebService
+     * class
+     */
     constructor(private http: HttpClient) {  }
 
+    /**
+     * Fetch a page of businesses from the Biz Directory API
+     * @param page The page number requested
+     * @returns An Observable for the collection of businesses
+     */
     getBusinesses(page: number) {
         return this.http.get&lt;any&gt;(
             &#x27;http://localhost:5000/api/v1.0/businesses?pn&#x3D;&#x27; + page + 

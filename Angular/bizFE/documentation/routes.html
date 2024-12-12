@@ -79,7 +79,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content coverage">
+               <div class="content routes">
                    <div class="content-data">
 
 
@@ -95,169 +95,22 @@
 
 
 
-
-
-
-
-
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">Documentation coverage</li>
+    <li class="breadcrumb-item">Routes</li>
 </ol>
 
-<div>
-    <img src="./images/coverage-badge-documentation.svg">
-</div>
+<div id="body-routes"></div>
 
-<table class="table table-bordered coverage" id="coverage-table">
-    <thead class="coverage-header">
-        <tr>
-            <th>File</th>
-            <th>Type</th>
-            <th>Identifier</th>
-            <th style="text-align:right" class="statements" data-sort-default>Statements</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/AppComponent.html">src/app/app.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>AppComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/2)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#appConfig">src/app/app.config.ts</a>
-            </td>
-            <td>variable</td>
-            <td>appConfig</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/AuthButtonComponent.html">src/app/authbutton.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>AuthButtonComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/AuthUserComponent.html">src/app/authuser.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>AuthUserComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/BusinessComponent.html">src/app/business.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>BusinessComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/17)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/BusinessesComponent.html">src/app/businesses.components.ts</a>
-            </td>
-            <td>component</td>
-            <td>BusinessesComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/8)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./classes/DataService.html">src/app/data.service.ts</a>
-            </td>
-            <td>class</td>
-            <td>DataService</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/HomeComponent.html">src/app/home.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>HomeComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/NavComponent.html">src/app/nav.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>NavComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/TestWSComponent.html">src/app/testWS.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>TestWSComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/11)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./injectables/WebService.html">src/app/web.service.ts</a>
-            </td>
-            <td>injectable</td>
-            <td>WebService</td>
-            <td align="right" data-sort="57">
-                <span class="coverage-percent">57 %</span>
-                <span class="coverage-count">(4/7)</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<script src="./js/libs/d3.v3.min.js"></script>
+<script src="./js/libs/innersvg.js"></script>
 
-<script src="js/libs/tablesort.min.js"></script>
-<script src="js/libs/tablesort.number.min.js"></script>
-<script>
-    new Tablesort(document.getElementById('coverage-table'));
-</script>
+<script src="./js/routes/routes_index.js"></script>
+<script src="./js/routes.js"></script>
+
+
+
+
+
 
                    </div><div class="search-results">
     <div class="has-results">
@@ -284,8 +137,8 @@
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'coverage';
-            var COMPODOC_CURRENT_PAGE_URL = 'coverage.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'routes';
+            var COMPODOC_CURRENT_PAGE_URL = 'routes.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
